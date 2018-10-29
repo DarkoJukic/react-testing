@@ -5,6 +5,9 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navbar'
 import Counters from './components/counters'
+import Like from './components/common/like'
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+
 
 class App extends Component {
   state = {  
@@ -12,7 +15,8 @@ class App extends Component {
         {id: 1, name : "first", value : 0},
         {id: 2, name : "second", value : 0},
         {id: 3, name : "third", value : 2}
-    ]
+    ],
+    liked : true
 };
 
 constructor(props) {
@@ -45,6 +49,12 @@ handleDecrement= counter => {
   console.log(this.state.counters[index]);
 }
 
+handleLikeClick = liked => {
+  // const likedState = [...this.state.liked];
+  liked = !liked;
+  this.setState({liked});
+}
+
 
 handleDelete = counterId =>
 {
@@ -67,6 +77,14 @@ handleDelete = counterId =>
           onDelete={this.handleDelete}
         ></Counters>
         </main>
+
+      <Like liked={this.state.liked}
+            onLikeClick={this.handleLikeClick}
+      >
+          
+      </Like>
+
+
       </React.Fragment>
     );
   }
