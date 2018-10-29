@@ -36,6 +36,16 @@ handleIncrement = counter => {
     console.log(this.state.counters[index]);
 }
 
+handleDecrement= counter => {
+  const counters = [...this.state.counters];
+  const index = counters.indexOf(counter);
+  counters[index] = {...counter};
+  counters[index].value--;
+  this.setState({counters});
+  console.log(this.state.counters[index]);
+}
+
+
 handleDelete = counterId =>
 {
     const counters = this.state.counters.filter(c => c.id != counterId);
@@ -53,6 +63,7 @@ handleDelete = counterId =>
           counters={this.state.counters}
           onReset={this.handleReset}
           onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
         ></Counters>
         </main>
